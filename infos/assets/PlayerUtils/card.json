@@ -1,0 +1,16 @@
+{
+    "title": "Player Utils",
+    "subtitle": "Umsetzung: in Pending",
+    "items": [
+        "Verschiedene Systeme enthalten:",
+        "Movement System",
+        "Third Person Camera System",
+        "Aim System mit Head-Bone Constraint",
+        "Intro System",
+        "Menu Manager System",
+        "Attack System",
+        "Stats System",
+        "Respawn System",
+        "Level & XP System"
+    ]
+}

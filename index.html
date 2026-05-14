@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="de" data-page="index.html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ── SEO ───────────────────────────────────────────────────────── -->
+  <title>HK Productions – SingleVerse Games | Error 0: Success detected</title>
+  <meta name="description" content="HK Productions – SingleVerse Games entwickelt Unity Assets, immersive Spiele im Tooniom-Universum und durchdachte Android Apps. Error 0: Success detected.">
+  <meta name="keywords" content="HK Productions, SingleVerse Games, Unity Assets, Tooniom, Android Apps, Indie Games, Game Development">
+  <meta name="author" content="HK Productions">
+  <meta name="robots" content="index, follow">
+  <!-- Replace with your actual GitHub Pages URL -->
+  <link rel="canonical" href="https://hk-gamestudio.github.io/">
+  <link rel="alternate" hreflang="de" href="https://hk-gamestudio.github.io/">
+  <link rel="alternate" hreflang="en" href="https://hk-gamestudio.github.io/">
+
+  <!-- ── Open Graph ─────────────────────────────────────────────── -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://hk-gamestudio.github.io/">
+  <meta property="og:title"       content="HK Productions – SingleVerse Games">
+  <meta property="og:description" content="Unity Assets, Tooniom Games und Android Apps. Error 0: Success detected.">
+  <meta property="og:image"       content="https://hk-gamestudio.github.io/icons/Cover_PC.png">
+  <meta property="og:locale"      content="de_DE">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- ── Twitter Card ───────────────────────────────────────────── -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="HK Productions – SingleVerse Games">
+  <meta name="twitter:description" content="Unity Assets, Tooniom Games und Android Apps.">
+  <meta name="twitter:image"       content="https://hk-gamestudio.github.io/icons/Cover_PC.png">
+
+  <!-- ── Structured Data ────────────────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "HK Productions",
+    "alternateName": "HK Productions – SingleVerse Games",
+    "description": "Game development studio creating Unity Assets, games and Android apps.",
+    "url": "https://hk-gamestudio.github.io/",
+    "logo": "https://hk-gamestudio.github.io/icons/Phönix.png",
+    "sameAs": []
+  }
+  </script>
+
+  <!-- ── Favicon ────────────────────────────────────────────────── -->
+  <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon.ico">
+
+  <!-- ── CSS ────────────────────────────────────────────────────── -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body class="page">
+
+  <!-- Scan line effect -->
+  <div class="scanline" aria-hidden="true"></div>
+
+  <!-- ── Navigation ─────────────────────────────────────────────── -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Hauptnavigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="HK Productions – Home">
+        <img src="icons/Phönix.png" alt="HK Productions Logo" class="nav__logo-img" width="36" height="36">
+        <div class="nav__logo-text">
+          <span class="nav__logo-name">HK Productions</span>
+          <span class="nav__logo-sub">SingleVerse Games</span>
+        </div>
+      </a>
+
+      <ul class="nav__links" role="list">
+        <li><a href="index.html"  class="nav__link" data-page="index.html"  data-i18n="nav.home">Start</a></li>
+        <li><a href="assets.html" class="nav__link" data-page="assets.html" data-i18n="nav.assets">Assets</a></li>
+        <li><a href="games.html"  class="nav__link" data-page="games.html"  data-i18n="nav.games">Spiele</a></li>
+        <li><a href="apps.html"   class="nav__link" data-page="apps.html"   data-i18n="nav.apps">Apps</a></li>
+      </ul>
+
+      <div class="nav__right">
+        <button class="lang-toggle" id="lang-toggle" aria-label="Sprache wechseln">
+          <span class="lang-toggle__opt active" data-lang="de">DE</span>
+          <span class="lang-toggle__sep">/</span>
+          <span class="lang-toggle__opt" data-lang="en">EN</span>
+        </button>
+        <button class="nav__hamburger" id="nav-hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ── Hero ──────────────────────────────────────────────────── -->
+    <section class="hero" aria-label="Hero">
+      <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="hero__content">
+        <img
+          src="icons/Phönix.png"
+          alt="HK Productions Phönix"
+          class="hero__logo float fade-up"
+          width="128"
+          height="128"
+        >
+        <p class="hero__label fade-up fade-up--d1" data-i18n="home.hero_sub">SingleVerse Games</p>
+        <h1 class="hero__title fade-up fade-up--d2">HK Productions</h1>
+        <p class="hero__slogan fade-up fade-up--d3">
+          <span class="glitch" data-text="Error 0: Success detected" data-i18n="home.hero_slogan">Error 0: Success detected</span>
+        </p>
+        <div class="hero__actions fade-up fade-up--d4">
+          <a href="#showcase" class="btn btn--primary" data-i18n="home.hero_cta">Unsere Highlights</a>
+        </div>
+      </div>
+
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+        <span data-i18n="home.hero_scroll">Scrollen</span>
+      </div>
+    </section>
+
+    <!-- ── Feature Tiles ──────────────────────────────────────────── -->
+    <section class="features section" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="features-title" data-i18n="home.features_title">Was wir erschaffen</h2>
+          <p data-i18n="home.features_sub">Vom Game-Asset bis zur fertigen App – alles aus einer Hand.</p>
+        </div>
+
+        <div class="features__grid">
+          <a href="assets.html" class="feature-tile reveal" data-reveal-delay="0">
+            <span class="feature-tile__icon" aria-hidden="true">🧩</span>
+            <h3 class="feature-tile__title" data-i18n="home.features.assets_title">Unity Assets</h3>
+            <p class="feature-tile__desc" data-i18n="home.features.assets_desc">Professionelle Tools und Frameworks für Unity-Entwickler auf dem Asset Store.</p>
+            <span class="feature-tile__arrow">→ ansehen</span>
+          </a>
+
+          <a href="games.html" class="feature-tile reveal" data-reveal-delay="100">
+            <span class="feature-tile__icon" aria-hidden="true">🎮</span>
+            <h3 class="feature-tile__title" data-i18n="home.features.games_title">Spiele</h3>
+            <p class="feature-tile__desc" data-i18n="home.features.games_desc">Immersive Welten im Tooniom-Universum – Lighted und Shadowed.</p>
+            <span class="feature-tile__arrow">→ entdecken</span>
+          </a>
+
+          <a href="apps.html" class="feature-tile reveal" data-reveal-delay="200">
+            <span class="feature-tile__icon" aria-hidden="true">📱</span>
+            <h3 class="feature-tile__title" data-i18n="home.features.apps_title">Android Apps</h3>
+            <p class="feature-tile__desc" data-i18n="home.features.apps_desc">Nützliche Apps für den Alltag, entwickelt mit Fokus auf UX.</p>
+            <span class="feature-tile__arrow">→ erkunden</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Showcase ───────────────────────────────────────────────── -->
+    <section class="showcase section" id="showcase" aria-labelledby="showcase-title">
+      <div class="container">
+        <p class="showcase__section-label" aria-hidden="true">// highlights</p>
+        <div class="section-header">
+          <h2 id="showcase-title" data-i18n="home.showcase_title">Highlights</h2>
+          <p data-i18n="home.showcase_sub">Ein Blick auf das, was wir bauen.</p>
+        </div>
+
+        <div class="showcase__tabs" role="tablist" aria-label="Showcase-Kategorien">
+          <button class="showcase__tab active" data-tab="assets" data-i18n="nav.assets" role="tab" aria-selected="true">Assets</button>
+          <button class="showcase__tab" data-tab="games" data-i18n="nav.games" role="tab" aria-selected="false">Spiele</button>
+          <button class="showcase__tab" data-tab="apps" data-i18n="nav.apps" role="tab" aria-selected="false">Apps</button>
+        </div>
+
+        <div class="cards-grid cards-grid--showcase" id="showcase-grid" role="tabpanel" aria-live="polite" aria-label="Showcase Cards">
+          <!-- Dynamically loaded by cards.js -->
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
+          <div class="skeleton skeleton-card"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__name">HK Productions – SingleVerse Games</span>
+        <span class="footer__tagline" data-i18n="footer.tagline">Error 0: Success detected</span>
+        <span class="footer__copy" data-i18n="footer.copy">© 2025 HK Productions. Alle Rechte vorbehalten.</span>
+      </div>
+      <nav class="footer__links" aria-label="Footer Navigation">
+        <a href="index.html"  data-i18n="nav.home">Start</a>
+        <a href="assets.html" data-i18n="nav.assets">Assets</a>
+        <a href="games.html"  data-i18n="nav.games">Spiele</a>
+        <a href="apps.html"   data-i18n="nav.apps">Apps</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

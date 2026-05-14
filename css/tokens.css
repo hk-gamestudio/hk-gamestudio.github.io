@@ -1,0 +1,160 @@
+/* ═══════════════════════════════════════════════════════
+   LAYER ORDER — declared once here, inherited everywhere
+   ═══════════════════════════════════════════════════════ */
+@layer reset, tokens, global, components, pages;
+
+/* ── Animatable Custom Properties (CSS Houdini @property) ── */
+@property --neon-glow-opacity {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+@property --card-border-opacity {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0.12;
+}
+@property --gradient-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 135deg;
+}
+@property --particle-alpha {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+/* ── Design Tokens ── */
+@layer tokens {
+  :root {
+    /* ── Color Primitives (OKLCH for perceptual uniformity) ── */
+    --_cyan-l:    0.90;
+    --_cyan-c:    0.20;
+    --_cyan-h:    194;
+    --_purple-l:  0.68;
+    --_purple-c:  0.22;
+    --_purple-h:  291;
+
+    /* Brand */
+    --clr-cyan:           oklch(var(--_cyan-l)   var(--_cyan-c)   var(--_cyan-h));
+    --clr-cyan-dim:       oklch(var(--_cyan-l)   var(--_cyan-c)   var(--_cyan-h) / 0.12);
+    --clr-cyan-border:    oklch(var(--_cyan-l)   var(--_cyan-c)   var(--_cyan-h) / 0.35);
+    --clr-cyan-glow:      oklch(var(--_cyan-l)   var(--_cyan-c)   var(--_cyan-h) / 0.50);
+    --clr-purple:         oklch(var(--_purple-l) var(--_purple-c) var(--_purple-h));
+    --clr-purple-dim:     oklch(var(--_purple-l) var(--_purple-c) var(--_purple-h) / 0.12);
+    --clr-purple-border:  oklch(var(--_purple-l) var(--_purple-c) var(--_purple-h) / 0.35);
+    --clr-purple-glow:    oklch(var(--_purple-l) var(--_purple-c) var(--_purple-h) / 0.50);
+
+    /* Gradient shorthand */
+    --gradient-brand: linear-gradient(135deg, var(--clr-cyan), var(--clr-purple));
+    --gradient-brand-r: linear-gradient(135deg, var(--clr-purple), var(--clr-cyan));
+
+    /* Surfaces */
+    --clr-bg:         oklch(0.065 0.010 264);
+    --clr-surface:    oklch(0.105 0.012 264);
+    --clr-surface-2:  oklch(0.135 0.012 264);
+    --clr-surface-3:  oklch(0.170 0.012 264);
+    --clr-border:     oklch(0.210 0.012 264);
+    --clr-border-2:   oklch(0.280 0.012 264);
+
+    /* Text */
+    --clr-text:        oklch(0.93 0.004 264);
+    --clr-text-muted:  oklch(0.63 0.010 264);
+    --clr-text-subtle: oklch(0.43 0.010 264);
+
+    /* Semantic */
+    --clr-success:     oklch(0.73 0.17 155);
+    --clr-success-dim: oklch(0.73 0.17 155 / 0.15);
+    --clr-warning:     oklch(0.80 0.17  62);
+    --clr-error:       oklch(0.63 0.22  25);
+
+    /* ── Typography ── */
+    --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: ui-monospace, 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', Consolas, monospace;
+
+    /* Fluid Type Scale */
+    --text-2xs: clamp(0.625rem,  1.00vw, 0.750rem);
+    --text-xs:  clamp(0.750rem,  1.25vw, 0.875rem);
+    --text-sm:  clamp(0.875rem,  1.50vw, 1.000rem);
+    --text-md:  clamp(1.000rem,  1.75vw, 1.125rem);
+    --text-lg:  clamp(1.125rem,  2.25vw, 1.375rem);
+    --text-xl:  clamp(1.375rem,  3.00vw, 1.750rem);
+    --text-2xl: clamp(1.750rem,  4.00vw, 2.500rem);
+    --text-3xl: clamp(2.250rem,  5.50vw, 3.500rem);
+    --text-4xl: clamp(2.750rem,  8.00vw, 5.500rem);
+
+    /* Font Weights */
+    --fw-normal:   400;
+    --fw-medium:   500;
+    --fw-semibold: 600;
+    --fw-bold:     700;
+    --fw-black:    900;
+
+    /* ── Spacing (fluid) ── */
+    --space-1:  clamp(0.25rem,  0.50vw, 0.375rem);
+    --space-2:  clamp(0.50rem,  1.00vw, 0.750rem);
+    --space-3:  clamp(0.75rem,  1.50vw, 1.000rem);
+    --space-4:  clamp(1.00rem,  2.00vw, 1.250rem);
+    --space-6:  clamp(1.25rem,  2.50vw, 1.750rem);
+    --space-8:  clamp(1.75rem,  3.50vw, 2.500rem);
+    --space-12: clamp(2.50rem,  5.00vw, 4.000rem);
+    --space-16: clamp(4.00rem,  7.00vw, 6.000rem);
+    --space-24: clamp(5.00rem, 10.00vw, 9.000rem);
+    --space-32: clamp(7.00rem, 14.00vw, 12.00rem);
+
+    /* ── Border Radius ── */
+    --radius-sm:   0.375rem;
+    --radius-md:   0.625rem;
+    --radius-lg:   1.000rem;
+    --radius-xl:   1.500rem;
+    --radius-2xl:  2.000rem;
+    --radius-full: 9999px;
+
+    /* ── Layout ── */
+    --max-width:  75rem;
+    --nav-height: 4.5rem;
+
+    /* ── Glows ── */
+    --glow-cyan:
+      0 0 15px oklch(var(--_cyan-l) var(--_cyan-c) var(--_cyan-h) / 0.40),
+      0 0 50px oklch(var(--_cyan-l) var(--_cyan-c) var(--_cyan-h) / 0.15);
+    --glow-purple:
+      0 0 15px oklch(var(--_purple-l) var(--_purple-c) var(--_purple-h) / 0.40),
+      0 0 50px oklch(var(--_purple-l) var(--_purple-c) var(--_purple-h) / 0.15);
+    --glow-text-cyan:
+      0 0 12px oklch(var(--_cyan-l) var(--_cyan-c) var(--_cyan-h) / 0.80);
+    --glow-text-purple:
+      0 0 12px oklch(var(--_purple-l) var(--_purple-c) var(--_purple-h) / 0.80);
+
+    /* ── Shadows ── */
+    --shadow-sm: 0 1px 3px oklch(0.04 0 0 / 0.50), 0  1px  2px oklch(0.04 0 0 / 0.30);
+    --shadow-md: 0 4px 6px oklch(0.04 0 0 / 0.50), 0  2px  4px oklch(0.04 0 0 / 0.30);
+    --shadow-lg: 0 10px 25px oklch(0.04 0 0 / 0.60), 0 4px 10px oklch(0.04 0 0 / 0.40);
+    --shadow-xl: 0 20px 50px oklch(0.04 0 0 / 0.70), 0 8px 20px oklch(0.04 0 0 / 0.50);
+
+    /* ── Easing ── */
+    --ease-out-expo:  cubic-bezier(0.16, 1, 0.30, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.50, 1);
+    --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-in-back:   cubic-bezier(0.36, 0, 0.66, -0.56);
+
+    /* ── Durations ── */
+    --dur-fast:   120ms;
+    --dur-base:   250ms;
+    --dur-slow:   400ms;
+    --dur-slower: 700ms;
+
+    --transition-fast: var(--dur-fast)   var(--ease-out-expo);
+    --transition-base: var(--dur-base)   var(--ease-out-expo);
+    --transition-slow: var(--dur-slow)   var(--ease-out-expo);
+
+    /* ── Z-Index Scale ── */
+    --z-below:    -1;
+    --z-base:      0;
+    --z-raised:   10;
+    --z-overlay:  20;
+    --z-dropdown: 30;
+    --z-nav:      50;
+  }
+}

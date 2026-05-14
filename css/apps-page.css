@@ -1,0 +1,64 @@
+@layer pages {
+
+  .apps-page .page-hero {
+    padding-bottom: var(--space-8);
+  }
+
+  .apps-page .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  /* Coming-soon overlay on app cards */
+  .app-card--coming {
+    position: relative;
+  }
+
+  .app-card--coming .app-card__header {
+    background: linear-gradient(
+      135deg,
+      var(--clr-surface-2),
+      oklch(0.14 0.015 264 / 0.8)
+    );
+  }
+
+  /* Subtle animated gradient on app icons */
+  .app-card__icon-wrap {
+    position: relative;
+  }
+
+  .app-card__icon-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(var(--radius-lg) + 2px);
+    background: var(--gradient-brand);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  .app-card:hover .app-card__icon-wrap::after {
+    opacity: 1;
+  }
+
+  /* Notify button pulse */
+  .btn--notify {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn--notify::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: var(--gradient-brand);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  .btn--notify:hover::after { opacity: 0.15; }
+}

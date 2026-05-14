@@ -1,0 +1,10 @@
+{
+    "title": "Day Timer",
+    "subtitle": "Umsetzung: in Pending",
+    "items": [
+        "Tag/Nacht Zyklus",
+        "Sonnenpositions-Berechnung",
+        "Atmosphärisches Scattering",
+        "Uhrzeit-System"
+    ]
+}

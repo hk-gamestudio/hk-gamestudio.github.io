@@ -1,0 +1,137 @@
+@layer pages {
+
+  .games-page .page-hero {
+    padding-bottom: var(--space-8);
+  }
+
+  /* Universe variant label above section */
+  .universe-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .universe-label__dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .universe-label--lighted .universe-label__dot {
+    background: var(--clr-cyan);
+    box-shadow: var(--glow-text-cyan);
+  }
+
+  .universe-label--shadowed .universe-label__dot {
+    background: var(--clr-purple);
+    box-shadow: var(--glow-text-purple);
+  }
+
+  .universe-label__name {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .universe-label--heading {
+    margin-bottom: var(--space-4);
+  }
+
+  .universe-label--heading .universe-label__dot {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .universe-label--heading .universe-label__name {
+    font-size: var(--text-2xl);
+    font-weight: var(--fw-bold);
+    letter-spacing: 0.04em;
+  }
+
+  .universe-label--lighted .universe-label__name  { color: var(--clr-cyan); }
+  .universe-label--shadowed .universe-label__name { color: var(--clr-purple); }
+
+  .universe-section {
+    padding-block: var(--space-12);
+  }
+
+  .universe-section__header {
+    margin-bottom: var(--space-8);
+  }
+
+  .universe-section__title {
+    font-size: var(--text-2xl);
+    font-weight: var(--fw-bold);
+    margin-bottom: var(--space-3);
+  }
+
+  .universe-section__desc {
+    color: var(--clr-text-muted);
+    max-width: 55ch;
+  }
+
+  /* Lighted games get a subtle cyan accent background strip */
+  .universe-section--lighted {
+    position: relative;
+  }
+
+  .universe-section--lighted::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, var(--clr-cyan-dim) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: var(--z-below);
+  }
+
+  /* Shadowed games get a subtle purple accent */
+  .universe-section--shadowed {
+    position: relative;
+  }
+
+  .universe-section--shadowed::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, var(--clr-purple-dim) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: var(--z-below);
+  }
+
+  /* Lighted game cards get cyan hover */
+  .universe-section--lighted .game-card:hover {
+    border-color: var(--clr-cyan-border);
+    box-shadow: var(--shadow-xl), 0 0 30px var(--clr-cyan-glow);
+  }
+
+  /* Standalone games — amber/warning accent */
+  .universe-label--standalone .universe-label__dot {
+    background: var(--clr-warning);
+    box-shadow: 0 0 8px oklch(0.80 0.17 62 / 0.6);
+  }
+
+  .universe-label--standalone .universe-label__name {
+    color: var(--clr-warning);
+  }
+
+  .universe-section--standalone {
+    position: relative;
+  }
+
+  .universe-section--standalone::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, oklch(0.80 0.17 62 / 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: var(--z-below);
+  }
+
+  .universe-section--standalone .game-card:hover {
+    border-color: oklch(0.80 0.17 62 / 0.35);
+    box-shadow: var(--shadow-xl), 0 0 30px oklch(0.80 0.17 62 / 0.25);
+  }
+}

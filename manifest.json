@@ -1,0 +1,68 @@
+{
+  "assets": [
+    { "id": "AssetCreator",    "coverDir": "icons/assets/AssetCreator",    "cover": "Cover_AssetCreator.png",    "icon": "Icon_AssetCreator.png",    "hasDocs": true },
+    { "id": "DayTimer",        "coverDir": "icons/assets/DayTimer",        "cover": "Cover_DayTimer.png",        "icon": "Icon_DayTimer.png",        "hasDocs": true },
+    { "id": "MeshFormer",      "coverDir": "icons/assets/MeshFormer",      "cover": "Cover_MeshFormer.png",      "icon": "Icon_MeshFormer.png",      "hasDocs": true },
+    { "id": "MovementSystem",  "coverDir": "icons/assets/MovementSystem",  "cover": "Cover_MovementSystem.png",  "icon": "Icon_MovementSystem.png",  "hasDocs": true },
+    { "id": "PlayerUtils",     "coverDir": "icons/assets/PlayerUtils",     "cover": "Cover_PlayerUtils.png",     "icon": "Icon_PlayerUtils.png",     "hasDocs": true },
+    { "id": "SymbolCreator",   "coverDir": "icons/assets/SymbolCreator",   "cover": "Cover_SymbolCreator.png",   "icon": "Icon_SymbolCreator.png",   "hasDocs": true }
+  ],
+  "games": {
+    "standalone": [
+      {
+        "id": "TheOcean",
+        "displayName": "The Ocean",
+        "infoDir": "infos/games/the-ocean",
+        "iconDir": "icons/games/ocean",
+        "cover": "Cover_Ocean.png",
+        "icon": "Cover_Ocean.png"
+      },
+      {
+        "id": "MinerTycoon",
+        "displayName": "Miner Tycoon",
+        "infoDir": "infos/games/miner-tycoon",
+        "iconDir": "icons/games/miner",
+        "cover": "Cover_Miner.png",
+        "icon": "Cover_Miner.png"
+      }
+    ],
+    "lighted": [
+      { "id": "Legends",  "infoDir": "infos/games/tooniom/lighted/Legends",  "iconDir": "icons/games/tooniom/lighted/legends",  "cover": "Cover_Legends.png",  "icon": "Icon_Legends.png" },
+      { "id": "Genesis",  "infoDir": "infos/games/tooniom/lighted/Genesis",  "iconDir": "icons/games/tooniom/lighted/genesis",  "cover": "Cover_Genesis.png",  "icon": "Icon_Genesis.png" },
+      { "id": "Triads",   "infoDir": "infos/games/tooniom/lighted/Triad",    "iconDir": "icons/games/tooniom/lighted/triads",   "cover": "Cover_Triad.png",    "icon": "Icon_Triad.png" }
+    ],
+    "shadowed": [
+      { "id": "Storylands",  "infoDir": "infos/games/tooniom/shadowed/Storylands",  "iconDir": "icons/games/tooniom/shadowed/Storylands",  "cover": "Cover_Storylands.png",  "icon": "Icon_Storylands.png",  "hasDocs": true, "variant": "shadowed" },
+      { "id": "Battlelands", "infoDir": "infos/games/tooniom/shadowed/Battlelands", "iconDir": "icons/games/tooniom/shadowed/Battlelands", "cover": "Cover_Battlelands.png", "icon": "Icon_Battlelands.png" },
+      { "id": "Dreamlands",  "infoDir": "infos/games/tooniom/shadowed/Dreamlands",  "iconDir": "icons/games/tooniom/shadowed/Dreamlands",  "cover": "Cover_Dreamlands.png",  "icon": "Icon_Dreamlands.png" }
+    ]
+  },
+  "apps": [
+    {
+      "id": "hive-memories",
+      "icon": "🐝",
+      "name":        { "de": "Hive Memories",   "en": "Hive Memories" },
+      "tagline":     { "de": "Die Imker-App",    "en": "The Beekeeper App" },
+      "description": {
+        "de": "Verwalte deine Bienenstöcke, dokumentiere Inspektionen und verfolge deine Honigernten — alles an einem Ort.",
+        "en": "Manage your hives, document inspections and track your honey harvests — all in one place."
+      },
+      "platform": "Android",
+      "status": "coming_soon"
+    },
+    {
+      "id": "adhd-plan-a",
+      "hasDocs": true,
+      "docsId": "adhd",
+      "icon": "🧠",
+      "name":        { "de": "ADHD Plan A",                        "en": "ADHD Plan A" },
+      "tagline":     { "de": "Planen für neurodivergente Menschen", "en": "Planning for neurodiverse people" },
+      "description": {
+        "de": "Eine App, die Menschen mit ADHS und anderen neurodivergenten Eigenschaften bei der strukturierten Tagesplanung unterstützt.",
+        "en": "An app supporting people with ADHD and other neurodiverse traits with structured daily planning."
+      },
+      "platform": "Android",
+      "status": "coming_soon"
+    }
+  ]
+}

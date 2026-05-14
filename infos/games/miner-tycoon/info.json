@@ -1,0 +1,24 @@
+{
+  "link": "coming soon...",
+  "version": "0.1.0",
+  "de": {
+    "status": "In Umsetzung",
+    "genre": "3D Tycoon / Aufbaustrategie",
+    "description": "Baue als einfacher Minenarbeiter ein Imperium auf. Grabe tiefer, expandiere deine Minen und werde zum Bergbau-Magnaten.",
+    "features": [
+      "Baue ein Imperium als Miner auf",
+      "Kommandiere verschiedene Dronen um deine Arbeit zu erleichtern",
+      "Online-Modus: rundenbasiert gegen andere Spieler (später)"
+    ]
+  },
+  "en": {
+    "status": "In Development",
+    "genre": "3D Tycoon / Strategy",
+    "description": "Start as a simple mine worker and build an empire. Dig deeper, expand your mines and become a mining magnate.",
+    "features": [
+      "Build an empire as a miner",
+      "Command different drones to ease your work",
+      "Online mode: turn-based play vs other players (coming later)"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+    "link": "coming soon...",
+    "version": "1.0.0.0",
+    "de": {
+        "status": "In Warteschlange",
+        "existing_features": [
+            "Tag/Nacht Zyklus",
+            "Sonnenpositions-Berechnung",
+            "Atmosphärisches Scattering",
+            "Uhrzeit-System"
+        ],
+        "features": [
+            "Textur für Sonne und Mond",
+            "Wetter-Integration"
+        ]
+    },
+    "en": {
+        "status": "In Pending",
+        "existing_features": [
+            "Day/Night cycle",
+            "Sun position calculation",
+            "Atmospheric scattering",
+            "Clock Time"
+        ],
+        "features": [
+            "Texture for Sun and Moon",
+            "Weather integration"
+        ]
+    }
+}

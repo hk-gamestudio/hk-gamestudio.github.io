@@ -1,0 +1,30 @@
+{
+    "link": "https://assetstore.unity.com/packages/tools/game-toolkits/asset-creator-349982",
+    "version": "2.0.0.0",
+    "de": {
+        "status": "Veröffentlicht",
+        "existing_features": [
+            "Erstellung verschiedener ScriptableObjects:",
+            "Stats",
+            "Buffs und ChainBuffs",
+            "Angriffe mit Cast-Buffs",
+            "Klassen Attacken Pool",
+            "Charaktere mit Evolutions-Level, zufälligen Stats und attacken ihrer Klasse",
+            "Items mit Seltenheitsgraden und Drop Chancen"
+        ],
+        "features": []
+    },
+    "en": {
+        "status": "Published",
+        "existing_features": [
+            "Create different ScriptableObjects:",
+            "Stats",
+            "Buffs and ChainBuffs",
+            "Attacks with cast Buffs",
+            "Classes with Attack Pool",
+            "Character with Evolution Level, random Stats and attacks of their class",
+            "Items with rarity and drop chances"
+        ],
+        "features": []
+    }
+}

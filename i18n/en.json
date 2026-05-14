@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "home": "Home",
+    "assets": "Assets",
+    "games": "Games",
+    "apps": "Apps"
+  },
+  "footer": {
+    "tagline": "Error 0: Success detected",
+    "copy": "© 2025 HK Productions – SingleVerse Games. All rights reserved.",
+    "links": {
+      "home": "Home",
+      "assets": "Assets",
+      "games": "Games",
+      "apps": "Apps"
+    }
+  },
+  "home": {
+    "hero_sub": "SingleVerse Games",
+    "hero_slogan": "Error 0: Success detected",
+    "hero_cta": "Our Highlights",
+    "hero_scroll": "Scroll",
+    "features_title": "What we create",
+    "features_sub": "From game assets to finished apps — everything from one source.",
+    "features": {
+      "assets_title": "Unity Assets",
+      "assets_desc": "Professional tools and frameworks for Unity developers on the Asset Store.",
+      "games_title": "Games",
+      "games_desc": "Immersive worlds in the Tooniom universe — Lighted and Shadowed.",
+      "apps_title": "Android Apps",
+      "apps_desc": "Useful everyday apps, developed with a focus on UX."
+    },
+    "showcase_title": "Highlights",
+    "showcase_sub": "A glimpse at our favourites.",
+    "see_all": "See all"
+  },
+  "assets": {
+    "title": "Unity Assets",
+    "sub": "Professional tools and ScriptableObject frameworks for Unity developers.",
+    "filter_all": "All",
+    "filter_published": "Published",
+    "filter_planned": "In Planning",
+    "no_results": "No assets found.",
+    "view_store": "View on Asset Store",
+    "features_label": "Features",
+    "upcoming_label": "Planned Features",
+    "version_label": "Version"
+  },
+  "games": {
+    "title": "Our Games",
+    "sub": "From the Tooniom universe to standalone worlds — games built from passion.",
+    "lighted_title": "Tooniom – Lighted",
+    "lighted_desc": "Bright, vibrant worlds full of adventure and discovery.",
+    "shadowed_title": "Tooniom – Shadowed",
+    "shadowed_desc": "Dark, mystical worlds with deep secrets.",
+    "standalone_title": "Standalone Games",
+    "standalone_desc": "Games outside the Tooniom universe — each world its own.",
+    "genre_label": "Genre",
+    "status_label": "Status",
+    "coming_soon": "Coming soon"
+  },
+  "apps": {
+    "title": "Android Apps",
+    "sub": "Thoughtful apps for everyday life — built for special needs.",
+    "coming_soon": "Coming soon",
+    "notify": "Notify me",
+    "platform": "Android"
+  },
+  "badges": {
+    "published": "Published",
+    "in_planning": "In Planning",
+    "coming_soon": "Coming Soon",
+    "in_development": "In Development"
+  },
+  "404": {
+    "code": "Error 404",
+    "title": "File not found",
+    "message": "This page does not exist in the universe.",
+    "back": "Back to Home",
+    "log": [
+      "$ cd /universe/requested-page",
+      "bash: /universe/requested-page: No such directory",
+      "$ ls -la /universe/",
+      "drwxr-xr-x  home/",
+      "drwxr-xr-x  assets/",
+      "drwxr-xr-x  games/",
+      "drwxr-xr-x  apps/",
+      "$ echo $?",
+      "404"
+    ]
+  },
+  "loading": "Loading...",
+  "docs": {
+    "back_assets": "Back to Assets",
+    "back_games": "Back to Games",
+    "not_found": "Documentation not found."
+  }
+}

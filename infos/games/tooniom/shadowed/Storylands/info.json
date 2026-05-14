@@ -1,0 +1,22 @@
+{
+    "link": "coming soon...",
+    "version": "1.0.0",
+    "de": {
+        "status": "In Entwicklung",
+        "genre": "3D Open World RPG",
+        "features": [
+            "Erlebe die Zeit ~1000 Jahre nach Legends",
+            "Bewahre die Welt vor dem Untergang oder rufe ihn herbei",
+            "Tauche tiefer ein in die Geschichte von Tooniom"
+        ]
+    },
+    "en": {
+        "status": "In Development",
+        "genre": "3D Open World RPG",
+        "features": [
+            "Experience the time ~1000 years after Legends",
+            "Protect the world from its downfall — or bring it upon them",
+            "Dive deeper into the story of Tooniom"
+        ]
+    }
+}

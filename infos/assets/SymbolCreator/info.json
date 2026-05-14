@@ -1,0 +1,28 @@
+{
+    "link": "coming soon...",
+    "version": "1.0.0.0",
+    "de": {
+        "status": "In Warteschlange",
+        "existing_features": [
+            "Bearbeiten von ScriptingDefineSymbols",
+            "Persistente Speicherung",
+            "Utility-Klasse zum Erstellen von SDS via Code"
+        ],
+        "features": [
+            "Noch nichts geplant",
+            "Du hast Wünsche? Schreib uns auf Discord."
+        ]
+    },
+    "en": {
+        "status": "in Pending",
+        "existing_features": [
+            "Edit ScriptingDefineSymbols",
+            "persistent Saves",
+            "Bring a Util Class to create SDS per code"
+        ],
+        "features": [
+            "Nothing yet",
+            "You have Wishes? Talk about it on Discord."
+        ]
+    }
+}

@@ -1,0 +1,98 @@
+{
+  "nav": {
+    "home": "Start",
+    "assets": "Assets",
+    "games": "Spiele",
+    "apps": "Apps"
+  },
+  "footer": {
+    "tagline": "Error 0: Success detected",
+    "copy": "© 2025 HK Productions – SingleVerse Games. Alle Rechte vorbehalten.",
+    "links": {
+      "home": "Start",
+      "assets": "Assets",
+      "games": "Spiele",
+      "apps": "Apps"
+    }
+  },
+  "home": {
+    "hero_sub": "SingleVerse Games",
+    "hero_slogan": "Error 0: Success detected",
+    "hero_cta": "Unsere Highlights",
+    "hero_scroll": "Scrollen",
+    "features_title": "Was wir erschaffen",
+    "features_sub": "Vom Game-Asset bis zur fertigen App – alles aus einer Hand.",
+    "features": {
+      "assets_title": "Unity Assets",
+      "assets_desc": "Professionelle Tools und Frameworks für Unity-Entwickler auf dem Asset Store.",
+      "games_title": "Spiele",
+      "games_desc": "Immersive Welten im Tooniom-Universum – Lighted und Shadowed.",
+      "apps_title": "Android Apps",
+      "apps_desc": "Nützliche Apps für den Alltag, entwickelt mit Fokus auf UX."
+    },
+    "showcase_title": "Highlights",
+    "showcase_sub": "Ein Blick auf unsere Favoriten.",
+    "see_all": "Alle ansehen"
+  },
+  "assets": {
+    "title": "Unity Assets",
+    "sub": "Professionelle Tools und ScriptableObject-Frameworks für Unity-Entwickler.",
+    "filter_all": "Alle",
+    "filter_published": "Veröffentlicht",
+    "filter_planned": "In Planung",
+    "no_results": "Keine Assets gefunden.",
+    "view_store": "Im Asset Store ansehen",
+    "features_label": "Features",
+    "upcoming_label": "Geplante Features",
+    "version_label": "Version"
+  },
+  "games": {
+    "title": "Unsere Spiele",
+    "sub": "Vom Tooniom-Universum bis zu eigenständigen Welten – Spiele aus Leidenschaft.",
+    "lighted_title": "Tooniom – Lighted",
+    "lighted_desc": "Helle, lebendige Welten voller Abenteuer und Entdeckungen.",
+    "shadowed_title": "Tooniom – Shadowed",
+    "shadowed_desc": "Dunkle, mystische Welten mit tiefen Geheimnissen.",
+    "standalone_title": "Standalone Games",
+    "standalone_desc": "Spiele außerhalb des Tooniom-Universums – jede Welt für sich.",
+    "genre_label": "Genre",
+    "status_label": "Status",
+    "coming_soon": "Bald verfügbar"
+  },
+  "apps": {
+    "title": "Android Apps",
+    "sub": "Durchdachte Apps für den Alltag – für besondere Bedürfnisse entwickelt.",
+    "coming_soon": "Bald verfügbar",
+    "notify": "Benachrichtigen",
+    "platform": "Android"
+  },
+  "badges": {
+    "published": "Veröffentlicht",
+    "in_planning": "In Planung",
+    "coming_soon": "Bald verfügbar",
+    "in_development": "In Entwicklung"
+  },
+  "404": {
+    "code": "Error 404",
+    "title": "Datei nicht gefunden",
+    "message": "Diese Seite existiert nicht im Universum.",
+    "back": "Zurück zur Startseite",
+    "log": [
+      "$ cd /universe/requested-page",
+      "bash: /universe/requested-page: Kein solches Verzeichnis",
+      "$ ls -la /universe/",
+      "drwxr-xr-x  home/",
+      "drwxr-xr-x  assets/",
+      "drwxr-xr-x  games/",
+      "drwxr-xr-x  apps/",
+      "$ echo $?",
+      "404"
+    ]
+  },
+  "loading": "Laden...",
+  "docs": {
+    "back_assets": "Zurück zu Assets",
+    "back_games": "Zurück zu Spielen",
+    "not_found": "Dokumentation nicht gefunden."
+  }
+}

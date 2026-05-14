@@ -1,0 +1,26 @@
+{
+  "link": "coming soon...",
+  "version": "0.1.0",
+  "de": {
+    "status": "In Umsetzung",
+    "genre": "3D Open World Horror Survival",
+    "description": "Überlebe als Hai in einer offenen Unterwasserwelt. Wähle deine Hai-Art, pflanze dich fort und starte als dein Baby neu – mit Buffs für den nächsten Run. Start als Singleplayer, Online-Modus folgt.",
+    "features": [
+      "Spiele verschiedene Hai-Arten",
+      "Es zählt Überleben, Altern und Fortpflanzen",
+      "Starte als dein Baby neu oder altere weiter",
+      "Je älter du wirst, desto mehr/bessere Buffs bekommst du als Baby"
+    ]
+  },
+  "en": {
+    "status": "In Development",
+    "genre": "3D Open World Horror Survival",
+    "description": "Survive as a shark in an open underwater world. Choose your shark species, reproduce and restart as your baby – carrying buffs into the next run. Starts as singleplayer, online mode coming later.",
+    "features": [
+      "Play as different shark species",
+      "Survival, aging and reproduction are key",
+      "Restart as your baby or continue aging",
+      "The older you get, the more/better buffs you carry as a baby"
+    ]
+  }
+}

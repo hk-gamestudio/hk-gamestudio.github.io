@@ -1,0 +1,28 @@
+{
+    "link": "coming soon...",
+    "version": "1.0.0.0",
+    "de": {
+        "status": "In Warteschlange",
+        "existing_features": [
+            "Verschiedene Systeme enthalten:",
+            "MeshFormer - Editor",
+            "MeshFormer - Runtime"
+        ],
+        "features": [
+            "UV Editor",
+            "Deform Collider"
+        ]
+    },
+    "en": {
+        "status": "in Pending",
+        "existing_features": [
+            "Bring different Systems:",
+            "MeshFormer - Editor",
+            "MeshFormer - Runtime"
+        ],
+        "features": [
+            "UV Editor",
+            "Deform Collider"
+        ]
+    }
+}

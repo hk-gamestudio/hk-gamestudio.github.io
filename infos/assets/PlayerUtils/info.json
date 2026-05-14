@@ -1,0 +1,42 @@
+{
+    "link": "coming soon...",
+    "version": "1.0.0.0",
+    "de": {
+        "status": "In Warteschlange",
+        "existing_features": [
+            "Verschiedene Systeme enthalten:",
+            "Movement System",
+            "Third Person Camera System",
+            "Aim System mit Head-Bone Constraint",
+            "Intro System",
+            "Menu Manager System",
+            "Attack System",
+            "Stats System",
+            "Respawn System",
+            "Level & XP System"
+        ],
+        "features": [
+            "Inventar-System",
+            "Währungs-System"
+        ]
+    },
+    "en": {
+        "status": "in Pending",
+        "existing_features": [
+            "Bring different Systems:",
+            "Movement System",
+            "Third Person Camera System",
+            "Aim System with Head-Bone Constrait",
+            "Intro System",
+            "Menu Manager System",
+            "Attack System",
+            "Stats System",
+            "Respawn System",
+            "Level&XP System"
+        ],
+        "features": [
+            "Inventory System",
+            "Currency System"
+        ]
+    }
+}
