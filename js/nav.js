@@ -15,11 +15,12 @@ export function initNav() {
 }
 
 function markActiveLink() {
-  const path = location.pathname.replace(/\/$/, '');
-  const page = path.split('/').pop() || 'index.html';
+  // Extract first path segment: /assets/asset-creator → 'assets', / → ''
+  const segs    = location.pathname.split('/').filter(Boolean);
+  const section = segs[0] ?? '';
 
   document.querySelectorAll('.nav__link[data-page]').forEach(link => {
-    link.classList.toggle('active', link.dataset.page === page);
+    link.classList.toggle('active', link.dataset.page === section);
   });
 }
 
@@ -42,7 +43,6 @@ function initHamburger(nav) {
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  // Close on any nav link click (mobile)
   links.querySelectorAll('.nav__link').forEach(link => {
     link.addEventListener('click', () => {
       burger.classList.remove('open');
@@ -52,7 +52,6 @@ function initHamburger(nav) {
     });
   });
 
-  // Close on outside click
   document.addEventListener('click', e => {
     if (!nav.contains(e.target) && links.classList.contains('open')) {
       burger.classList.remove('open');

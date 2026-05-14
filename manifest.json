@@ -1,16 +1,17 @@
 {
   "assets": [
-    { "id": "AssetCreator",    "coverDir": "icons/assets/AssetCreator",    "cover": "Cover_AssetCreator.png",    "icon": "Icon_AssetCreator.png",    "hasDocs": true },
-    { "id": "DayTimer",        "coverDir": "icons/assets/DayTimer",        "cover": "Cover_DayTimer.png",        "icon": "Icon_DayTimer.png",        "hasDocs": true },
-    { "id": "MeshFormer",      "coverDir": "icons/assets/MeshFormer",      "cover": "Cover_MeshFormer.png",      "icon": "Icon_MeshFormer.png",      "hasDocs": true },
-    { "id": "MovementSystem",  "coverDir": "icons/assets/MovementSystem",  "cover": "Cover_MovementSystem.png",  "icon": "Icon_MovementSystem.png",  "hasDocs": true },
-    { "id": "PlayerUtils",     "coverDir": "icons/assets/PlayerUtils",     "cover": "Cover_PlayerUtils.png",     "icon": "Icon_PlayerUtils.png",     "hasDocs": true },
-    { "id": "SymbolCreator",   "coverDir": "icons/assets/SymbolCreator",   "cover": "Cover_SymbolCreator.png",   "icon": "Icon_SymbolCreator.png",   "hasDocs": true }
+    { "id": "AssetCreator",    "slug": "asset-creator",    "coverDir": "icons/assets/AssetCreator",    "cover": "Cover_AssetCreator.png",    "icon": "Icon_AssetCreator.png",    "hasDocs": true },
+    { "id": "DayTimer",        "slug": "day-timer",         "coverDir": "icons/assets/DayTimer",        "cover": "Cover_DayTimer.png",        "icon": "Icon_DayTimer.png",        "hasDocs": true },
+    { "id": "MeshFormer",      "slug": "mesh-former",       "coverDir": "icons/assets/MeshFormer",      "cover": "Cover_MeshFormer.png",      "icon": "Icon_MeshFormer.png",      "hasDocs": true },
+    { "id": "MovementSystem",  "slug": "movement-system",   "coverDir": "icons/assets/MovementSystem",  "cover": "Cover_MovementSystem.png",  "icon": "Icon_MovementSystem.png",  "hasDocs": true },
+    { "id": "PlayerUtils",     "slug": "player-utils",      "coverDir": "icons/assets/PlayerUtils",     "cover": "Cover_PlayerUtils.png",     "icon": "Icon_PlayerUtils.png",     "hasDocs": true },
+    { "id": "SymbolCreator",   "slug": "symbol-creator",    "coverDir": "icons/assets/SymbolCreator",   "cover": "Cover_SymbolCreator.png",   "icon": "Icon_SymbolCreator.png",   "hasDocs": true }
   ],
   "games": {
     "standalone": [
       {
         "id": "TheOcean",
+        "slug": "the-ocean",
         "displayName": "The Ocean",
         "infoDir": "infos/games/the-ocean",
         "iconDir": "icons/games/ocean",
@@ -19,6 +20,7 @@
       },
       {
         "id": "MinerTycoon",
+        "slug": "miner-tycoon",
         "displayName": "Miner Tycoon",
         "infoDir": "infos/games/miner-tycoon",
         "iconDir": "icons/games/miner",
@@ -27,14 +29,14 @@
       }
     ],
     "lighted": [
-      { "id": "Legends",  "infoDir": "infos/games/tooniom/lighted/Legends",  "iconDir": "icons/games/tooniom/lighted/legends",  "cover": "Cover_Legends.png",  "icon": "Icon_Legends.png" },
-      { "id": "Genesis",  "infoDir": "infos/games/tooniom/lighted/Genesis",  "iconDir": "icons/games/tooniom/lighted/genesis",  "cover": "Cover_Genesis.png",  "icon": "Icon_Genesis.png" },
-      { "id": "Triads",   "infoDir": "infos/games/tooniom/lighted/Triad",    "iconDir": "icons/games/tooniom/lighted/triads",   "cover": "Cover_Triad.png",    "icon": "Icon_Triad.png" }
+      { "id": "Legends",  "slug": "legends",  "displayName": "Tooniom – Legends",  "infoDir": "infos/games/tooniom/lighted/Legends",  "iconDir": "icons/games/tooniom/lighted/legends",  "cover": "Cover_Legends.png",  "icon": "Icon_Legends.png" },
+      { "id": "Genesis",  "slug": "genesis",  "displayName": "Tooniom – Genesis",  "infoDir": "infos/games/tooniom/lighted/Genesis",  "iconDir": "icons/games/tooniom/lighted/genesis",  "cover": "Cover_Genesis.png",  "icon": "Icon_Genesis.png" },
+      { "id": "Triads",   "slug": "triads",   "displayName": "Tooniom – Triads",   "infoDir": "infos/games/tooniom/lighted/Triad",    "iconDir": "icons/games/tooniom/lighted/triads",   "cover": "Cover_Triad.png",    "icon": "Icon_Triad.png" }
     ],
     "shadowed": [
-      { "id": "Storylands",  "infoDir": "infos/games/tooniom/shadowed/Storylands",  "iconDir": "icons/games/tooniom/shadowed/Storylands",  "cover": "Cover_Storylands.png",  "icon": "Icon_Storylands.png",  "hasDocs": true, "variant": "shadowed" },
-      { "id": "Battlelands", "infoDir": "infos/games/tooniom/shadowed/Battlelands", "iconDir": "icons/games/tooniom/shadowed/Battlelands", "cover": "Cover_Battlelands.png", "icon": "Icon_Battlelands.png" },
-      { "id": "Dreamlands",  "infoDir": "infos/games/tooniom/shadowed/Dreamlands",  "iconDir": "icons/games/tooniom/shadowed/Dreamlands",  "cover": "Cover_Dreamlands.png",  "icon": "Icon_Dreamlands.png" }
+      { "id": "Storylands",  "slug": "storylands",  "displayName": "Tooniom – Storylands",  "infoDir": "infos/games/tooniom/shadowed/Storylands",  "iconDir": "icons/games/tooniom/shadowed/Storylands",  "cover": "Cover_Storylands.png",  "icon": "Icon_Storylands.png",  "hasDocs": true, "variant": "shadowed" },
+      { "id": "Battlelands", "slug": "battlelands", "displayName": "Tooniom – Battlelands", "infoDir": "infos/games/tooniom/shadowed/Battlelands", "iconDir": "icons/games/tooniom/shadowed/Battlelands", "cover": "Cover_Battlelands.png", "icon": "Icon_Battlelands.png" },
+      { "id": "Dreamlands",  "slug": "dreamlands",  "displayName": "Tooniom – Dreamlands",  "infoDir": "infos/games/tooniom/shadowed/Dreamlands",  "iconDir": "icons/games/tooniom/shadowed/Dreamlands",  "cover": "Cover_Dreamlands.png",  "icon": "Icon_Dreamlands.png" }
     ]
   },
   "apps": [

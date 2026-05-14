@@ -1,6 +1,8 @@
 /**
  * Dynamic card rendering via Web Components + fetch().
  * ProductCard, GameCard, AppCard — all use light DOM so global CSS applies.
+ * All fetch paths are absolute (/manifest.json, /infos/...) so they work
+ * from any subfolder page (/assets/, /games/, etc.).
  */
 
 import { t, getLang } from './i18n.js';
@@ -10,18 +12,18 @@ import { observeNew } from './reveal.js';
 
 function statusBadge(status, lang) {
   const map = {
-    Published:        { cls: 'badge--published', key: 'badges.published'       },
-    Veröffentlicht:   { cls: 'badge--published', key: 'badges.published'       },
-    'In Planning':    { cls: 'badge--planned',   key: 'badges.in_planning'     },
-    'In Planung':     { cls: 'badge--planned',   key: 'badges.in_planning'     },
-    coming_soon:      { cls: 'badge--coming',    key: 'badges.coming_soon'     },
-    'In Pending':     { cls: 'badge--coming',    key: 'badges.coming_soon'     },
-    'in Pending':     { cls: 'badge--coming',    key: 'badges.coming_soon'     },
-    'In Warteschlange': { cls: 'badge--coming',  key: 'badges.coming_soon'     },
-    'In Umsetzung':   { cls: 'badge--dev',       key: 'badges.in_development'  },
-    'In Entwicklung': { cls: 'badge--dev',       key: 'badges.in_development'  },
-    'In Development': { cls: 'badge--dev',       key: 'badges.in_development'  },
-    'in Development': { cls: 'badge--dev',       key: 'badges.in_development'  },
+    Published:          { cls: 'badge--published', key: 'badges.published'      },
+    Veröffentlicht:     { cls: 'badge--published', key: 'badges.published'      },
+    'In Planning':      { cls: 'badge--planned',   key: 'badges.in_planning'    },
+    'In Planung':       { cls: 'badge--planned',   key: 'badges.in_planning'    },
+    coming_soon:        { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'In Pending':       { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'in Pending':       { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'In Warteschlange': { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'In Umsetzung':     { cls: 'badge--dev',       key: 'badges.in_development' },
+    'In Entwicklung':   { cls: 'badge--dev',       key: 'badges.in_development' },
+    'In Development':   { cls: 'badge--dev',       key: 'badges.in_development' },
+    'in Development':   { cls: 'badge--dev',       key: 'badges.in_development' },
   };
   const entry = map[status] ?? { cls: 'badge--planned', key: 'badges.in_planning' };
   return `<span class="badge ${entry.cls}" data-i18n="${entry.key}">${t(entry.key)}</span>`;
@@ -33,17 +35,57 @@ function skeletonCards(n = 3, cls = '') {
     .join('');
 }
 
+/* After cards load: scroll to + highlight the card matching the URL slug */
+function highlightFromUrl(grid, section, attr = 'data-meta') {
+  const segs = location.pathname.split('/').filter(Boolean);
+  if (segs[0] !== section || !segs[1]) return;
+  const slug = segs[1];
+
+  requestAnimationFrame(() => {
+    grid.querySelectorAll(`[${attr}]`).forEach(el => {
+      try {
+        const meta  = JSON.parse(el.getAttribute(attr));
+        const elSlug = meta.slug ?? meta.id;
+        if (elSlug === slug) {
+          const article = el.querySelector('article');
+          if (article) {
+            article.dataset.selected = 'true';
+            setTimeout(() => article.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+          }
+        }
+      } catch { /* skip */ }
+    });
+  });
+}
+
+/* Event delegation: click card body (not a button/link) → pushState */
+function addCardUrlTracking(grid, section, attr = 'data-meta') {
+  grid.addEventListener('click', e => {
+    if (e.target.closest('a, button')) return;
+    const card = e.target.closest(`[${attr}]`);
+    if (!card) return;
+    try {
+      const meta = JSON.parse(card.getAttribute(attr));
+      const slug = meta.slug ?? meta.id;
+      if (!slug) return;
+      history.pushState({ slug }, '', `/${section}/${slug}`);
+      grid.querySelectorAll('article[data-selected]').forEach(el => delete el.dataset.selected);
+      const article = card.querySelector('article');
+      if (article) article.dataset.selected = 'true';
+    } catch { /* skip */ }
+  });
+}
+
 /* ── ProductCard Web Component ───────────────────────────────────────────── */
 
 class ProductCard extends HTMLElement {
   static get observedAttributes() { return ['data-lang']; }
-
   connectedCallback() { this._render(); }
   attributeChangedCallback() { this._render(); }
 
   _render() {
     const isRerender = this.children.length > 0;
-    const raw = this.getAttribute('data-info');
+    const raw  = this.getAttribute('data-info');
     const meta = this.getAttribute('data-meta');
     if (!raw) return;
 
@@ -60,10 +102,8 @@ class ProductCard extends HTMLElement {
     const existing = (d.existing_features ?? []).slice(0, 6);
     const planned  = (d.features ?? []).slice(0, 3);
 
-    const featureItems = (list, max = 6) =>
-      list.slice(0, max)
-        .map(f => `<li class="card__feature-item">${f}</li>`)
-        .join('');
+    const featureItems = list =>
+      list.map(f => `<li class="card__feature-item">${f}</li>`).join('');
 
     const coverPath = metaObj.coverDir
       ? `${metaObj.coverDir}/${metaObj.cover}`
@@ -74,9 +114,8 @@ class ProductCard extends HTMLElement {
            class="btn btn--ghost btn--sm" data-i18n="assets.view_store">${t('assets.view_store')}</a>`
       : '';
 
-    const docsBtn = metaObj.hasDocs
-      ? `<a href="docs.html?type=asset&id=${metaObj.id}"
-           class="btn btn--surface btn--sm">Docs</a>`
+    const docsBtn = metaObj.hasDocs && metaObj.slug
+      ? `<a href="/docs/${metaObj.slug}" class="btn btn--surface btn--sm">Docs</a>`
       : '';
 
     this.innerHTML = `
@@ -139,19 +178,17 @@ class GameCard extends HTMLElement {
       metaObj = meta ? JSON.parse(meta) : {};
     } catch { return; }
 
-    const lang  = getLang();
-    const d     = info[lang] ?? info.en ?? {};
+    const lang     = getLang();
+    const d        = info[lang] ?? info.en ?? {};
     const status   = d.status ?? d.Umsetzung ?? 'In Planning';
     const genre    = d.genre ?? '';
     const features = d.features ?? [];
 
-    const coverPath = metaObj.iconDir && metaObj.cover ? `${metaObj.iconDir}/${metaObj.cover}` : '';
-    const name = metaObj.id ?? '';
-    const displayName = metaObj.displayName ?? `Tooniom – ${name}`;
+    const coverPath  = metaObj.iconDir && metaObj.cover ? `${metaObj.iconDir}/${metaObj.cover}` : '';
+    const displayName = metaObj.displayName ?? `Tooniom – ${metaObj.id ?? ''}`;
 
-    const gameDocsBtn = metaObj.hasDocs
-      ? `<a href="docs.html?type=game&id=${metaObj.id}&variant=${metaObj.variant ?? 'shadowed'}"
-           class="btn btn--surface btn--sm">Docs</a>`
+    const gameDocsBtn = metaObj.hasDocs && metaObj.slug
+      ? `<a href="/docs/${metaObj.slug}" class="btn btn--surface btn--sm">Docs</a>`
       : `<span class="btn btn--surface btn--sm btn--muted">Docs – <span data-i18n="games.coming_soon">${t('games.coming_soon')}</span></span>`;
 
     this.innerHTML = `
@@ -200,14 +237,13 @@ class AppCard extends HTMLElement {
     let app;
     try { app = JSON.parse(raw); } catch { return; }
 
-    const lang = getLang();
+    const lang    = getLang();
     const name    = app.name?.[lang]        ?? app.name?.en        ?? '';
     const tagline = app.tagline?.[lang]     ?? app.tagline?.en     ?? '';
     const desc    = app.description?.[lang] ?? app.description?.en ?? '';
 
     const docsBtn = app.hasDocs
-      ? `<a href="docs.html?type=app&id=${app.id}&docsId=${app.docsId ?? app.id}&name=${encodeURIComponent(name)}"
-           class="btn btn--surface btn--sm">Docs</a>`
+      ? `<a href="/docs/${app.id}" class="btn btn--surface btn--sm">Docs</a>`
       : `<span class="btn btn--surface btn--sm btn--muted">Docs – <span data-i18n="games.coming_soon">${t('games.coming_soon')}</span></span>`;
 
     this.innerHTML = `
@@ -256,18 +292,17 @@ export async function loadAssets(gridId) {
 
   let manifest;
   try {
-    const res = await fetch('manifest.json', { cache: 'no-store' });
+    const res = await fetch('/manifest.json', { cache: 'no-store' });
     manifest  = await res.json();
   } catch { grid.innerHTML = '<p class="empty-state">Failed to load assets.</p>'; return; }
 
-  const lang = getLang();
+  const lang  = getLang();
   const cards = await Promise.all(
     manifest.assets.map(async meta => {
       try {
-        const res  = await fetch(`infos/assets/${meta.id}/info.json`, { cache: 'no-store' });
+        const res  = await fetch(`/infos/assets/${meta.id}/info.json`, { cache: 'no-store' });
         if (!res.ok) return null;
-        const info = await res.json();
-        return { meta, info };
+        return { meta, info: await res.json() };
       } catch { return null; }
     })
   );
@@ -281,15 +316,14 @@ export async function loadAssets(gridId) {
     el.setAttribute('data-meta', JSON.stringify(meta));
     el.setAttribute('data-lang', lang);
     grid.appendChild(el);
-
-    // Stagger reveal
     const inner = el.querySelector('.reveal');
     if (inner) inner.dataset.revealDelay = String(i * 80);
   });
 
   observeNew(grid);
+  addCardUrlTracking(grid, 'assets', 'data-meta');
+  highlightFromUrl(grid, 'assets', 'data-meta');
 
-  // Re-render on lang change
   document.addEventListener('langchange', ({ detail: { lang: newLang } }) => {
     grid.querySelectorAll('product-card').forEach(c => c.setAttribute('data-lang', newLang));
   });
@@ -307,7 +341,7 @@ export async function loadGames(lightedId, shadowedId) {
 
   let manifest;
   try {
-    const res = await fetch('manifest.json', { cache: 'no-store' });
+    const res = await fetch('/manifest.json', { cache: 'no-store' });
     manifest  = await res.json();
   } catch { return; }
 
@@ -319,7 +353,7 @@ export async function loadGames(lightedId, shadowedId) {
     let idx = 0;
     for (const meta of entries) {
       try {
-        const res  = await fetch(`${meta.infoDir}/info.json`, { cache: 'no-store' });
+        const res  = await fetch(`/${meta.infoDir}/info.json`, { cache: 'no-store' });
         if (!res.ok) continue;
         const info = await res.json();
         const el   = document.createElement('game-card');
@@ -330,7 +364,7 @@ export async function loadGames(lightedId, shadowedId) {
         const inner = el.querySelector('.reveal');
         if (inner) inner.dataset.revealDelay = String(idx * 100);
         idx++;
-      } catch { /* skip broken entry, keep order intact */ }
+      } catch { /* skip */ }
     }
     observeNew(grid);
   }
@@ -340,9 +374,12 @@ export async function loadGames(lightedId, shadowedId) {
     loadGroup(manifest.games.shadowed, shadowedGrid),
   ]);
 
+  if (lightedGrid)  { addCardUrlTracking(lightedGrid,  'games'); highlightFromUrl(lightedGrid,  'games'); }
+  if (shadowedGrid) { addCardUrlTracking(shadowedGrid, 'games'); highlightFromUrl(shadowedGrid, 'games'); }
+
   document.addEventListener('langchange', ({ detail: { lang: newLang } }) => {
-    [lightedGrid, shadowedGrid].filter(Boolean).forEach(grid => {
-      grid.querySelectorAll('game-card').forEach(c => c.setAttribute('data-lang', newLang));
+    [lightedGrid, shadowedGrid].filter(Boolean).forEach(g => {
+      g.querySelectorAll('game-card').forEach(c => c.setAttribute('data-lang', newLang));
     });
   });
 }
@@ -353,7 +390,7 @@ export async function loadApps(gridId) {
 
   let manifest;
   try {
-    const res = await fetch('manifest.json', { cache: 'no-store' });
+    const res = await fetch('/manifest.json', { cache: 'no-store' });
     manifest  = await res.json();
   } catch { return; }
 
@@ -365,12 +402,13 @@ export async function loadApps(gridId) {
     el.setAttribute('data-app', JSON.stringify(app));
     el.setAttribute('data-lang', lang);
     grid.appendChild(el);
-
     const inner = el.querySelector('.reveal');
     if (inner) inner.dataset.revealDelay = String(i * 120);
   });
 
   observeNew(grid);
+  addCardUrlTracking(grid, 'apps', 'data-app');
+  highlightFromUrl(grid, 'apps', 'data-app');
 
   document.addEventListener('langchange', ({ detail: { lang: newLang } }) => {
     grid.querySelectorAll('app-card').forEach(c => c.setAttribute('data-lang', newLang));
@@ -385,11 +423,10 @@ export async function loadShowcase(containerId) {
 
   let manifest;
   try {
-    const res = await fetch('manifest.json', { cache: 'no-store' });
+    const res = await fetch('/manifest.json', { cache: 'no-store' });
     manifest  = await res.json();
   } catch { return; }
 
-  // Lookup helpers
   const allGameMeta = [
     ...(manifest.games?.standalone ?? []),
     ...(manifest.games?.lighted   ?? []),
@@ -399,20 +436,18 @@ export async function loadShowcase(containerId) {
   const findGame  = id => allGameMeta.find(m => m.id === id) ?? null;
   const findApp   = id => manifest.apps.find(a => a.id === id) ?? null;
 
-  // Showcase order per tab — explicit, in the required sequence
   const ASSETS = ['AssetCreator', 'PlayerUtils', 'DayTimer'];
   const GAMES  = ['TheOcean', 'MinerTycoon', 'Storylands'];
   const APPS   = ['adhd-plan-a', 'hive-memories'];
 
   container.innerHTML = skeletonCards(3);
 
-  // Fetch asset + game info in parallel; apps live in manifest already
   const [assetResults, gameResults] = await Promise.all([
     Promise.all(ASSETS.map(async id => {
       const meta = findAsset(id);
       if (!meta) return null;
       try {
-        const res = await fetch(`infos/assets/${id}/info.json`, { cache: 'no-store' });
+        const res = await fetch(`/infos/assets/${id}/info.json`, { cache: 'no-store' });
         if (!res.ok) return null;
         return { id, meta, info: await res.json() };
       } catch { return null; }
@@ -421,7 +456,7 @@ export async function loadShowcase(containerId) {
       const meta = findGame(id);
       if (!meta?.infoDir) return null;
       try {
-        const res = await fetch(`${meta.infoDir}/info.json`, { cache: 'no-store' });
+        const res = await fetch(`/${meta.infoDir}/info.json`, { cache: 'no-store' });
         if (!res.ok) return null;
         return { id, meta, info: await res.json() };
       } catch { return null; }
@@ -433,7 +468,6 @@ export async function loadShowcase(containerId) {
     return app ? { id, app } : null;
   });
 
-  // Keyed maps for O(1) lookup while rendering in config-array order
   const assetMap = Object.fromEntries(assetResults.filter(Boolean).map(d => [d.id, d]));
   const gameMap  = Object.fromEntries(gameResults.filter(Boolean).map(d => [d.id, d]));
   const appMap   = Object.fromEntries(appResults.filter(Boolean).map(d => [d.id, d]));
@@ -508,7 +542,7 @@ export async function loadStandaloneGames(gridId) {
 
   let manifest;
   try {
-    const res = await fetch('manifest.json', { cache: 'no-store' });
+    const res = await fetch('/manifest.json', { cache: 'no-store' });
     manifest  = await res.json();
   } catch { return; }
 
@@ -522,7 +556,7 @@ export async function loadStandaloneGames(gridId) {
   let idx = 0;
   for (const meta of entries) {
     try {
-      const res  = await fetch(`${meta.infoDir}/info.json`, { cache: 'no-store' });
+      const res  = await fetch(`/${meta.infoDir}/info.json`, { cache: 'no-store' });
       if (!res.ok) continue;
       const info = await res.json();
       const el   = document.createElement('game-card');
@@ -533,9 +567,11 @@ export async function loadStandaloneGames(gridId) {
       const inner = el.querySelector('.reveal');
       if (inner) inner.dataset.revealDelay = String(idx * 100);
       idx++;
-    } catch { /* skip broken entry */ }
+    } catch { /* skip */ }
   }
   observeNew(grid);
+  addCardUrlTracking(grid, 'games');
+  highlightFromUrl(grid, 'games');
 
   document.addEventListener('langchange', ({ detail: { lang: newLang } }) => {
     grid.querySelectorAll('game-card').forEach(c => c.setAttribute('data-lang', newLang));
@@ -557,9 +593,8 @@ export function initFilter(filterId, gridId) {
     btn.classList.add('active');
 
     const filter = btn.dataset.filter;
-
     grid.querySelectorAll('product-card').forEach(card => {
-      const badge = card.querySelector('.badge');
+      const badge       = card.querySelector('.badge');
       const isPublished = badge?.classList.contains('badge--published');
       const isPlanned   = badge?.classList.contains('badge--planned');
 

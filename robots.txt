@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Allow: *
 
 Sitemap: https://hk-gamestudio.github.io/sitemap.xml

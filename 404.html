@@ -6,6 +6,19 @@
   <title>Error 404 – HK Productions</title>
   <meta name="description" content="Error 404: Seite nicht gefunden – HK Productions SingleVerse Games.">
   <meta name="robots" content="noindex, nofollow">
+
+  <!-- SPA redirect: /games/the-ocean → store slug, redirect to /games/ -->
+  <script>
+  (function () {
+    var segs = location.pathname.replace(/^\//, '').split('/').filter(Boolean);
+    var sections = ['assets', 'games', 'apps', 'docs'];
+    if (segs.length >= 2 && sections.indexOf(segs[0]) !== -1) {
+      sessionStorage.setItem('hk-redirect', JSON.stringify({ section: segs[0], slug: segs[1] }));
+      location.replace('/' + segs[0] + '/');
+    }
+  }());
+  </script>
+
   <link rel="icon" href="icons/favicon.ico" type="image/x-icon">
 
   <!-- CSS -->
@@ -106,7 +119,7 @@
   <!-- ── Navigation ─────────────────────────────────────────────── -->
   <nav class="nav" id="nav" role="navigation" aria-label="Hauptnavigation">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo" aria-label="HK Productions – Home">
+      <a href="/" class="nav__logo" aria-label="HK Productions – Home">
         <img src="icons/Phönix.png" alt="HK Productions Logo" class="nav__logo-img" width="36" height="36">
         <div class="nav__logo-text">
           <span class="nav__logo-name">HK Productions</span>
@@ -115,10 +128,10 @@
       </a>
 
       <ul class="nav__links" role="list">
-        <li><a href="index.html"  class="nav__link" data-page="index.html"  data-i18n="nav.home">Start</a></li>
-        <li><a href="assets.html" class="nav__link" data-page="assets.html" data-i18n="nav.assets">Assets</a></li>
-        <li><a href="games.html"  class="nav__link" data-page="games.html"  data-i18n="nav.games">Spiele</a></li>
-        <li><a href="apps.html"   class="nav__link" data-page="apps.html"   data-i18n="nav.apps">Apps</a></li>
+        <li><a href="/"        class="nav__link" data-page=""       data-i18n="nav.home">Start</a></li>
+        <li><a href="/assets/" class="nav__link" data-page="assets" data-i18n="nav.assets">Assets</a></li>
+        <li><a href="/games/"  class="nav__link" data-page="games"  data-i18n="nav.games">Spiele</a></li>
+        <li><a href="/apps/"   class="nav__link" data-page="apps"   data-i18n="nav.apps">Apps</a></li>
       </ul>
 
       <div class="nav__right">
@@ -149,17 +162,17 @@
         <span class="terminal__line terminal__line--cmd">$ cd /universe/requested-page</span>
         <span class="terminal__line">bash: /universe/requested-page: Kein solches Verzeichnis</span>
         <span class="terminal__line terminal__line--cmd">$ ls -la /universe/</span>
-        <span class="terminal__line terminal__line--dir">drwxr-xr-x  <a href="index.html"  style="color:inherit;text-decoration:underline">home/</a></span>
-        <span class="terminal__line terminal__line--dir">drwxr-xr-x  <a href="assets.html" style="color:inherit;text-decoration:underline">assets/</a></span>
-        <span class="terminal__line terminal__line--dir">drwxr-xr-x  <a href="games.html"  style="color:inherit;text-decoration:underline">games/</a></span>
-        <span class="terminal__line terminal__line--dir">drwxr-xr-x  <a href="apps.html"   style="color:inherit;text-decoration:underline">apps/</a></span>
+        <span class="terminal__line terminal__line--dir">drwxr-xr-x  <a href="/"        style="color:inherit;text-decoration:underline">home/</a></span>
+        <span class="terminal__line terminal__line--dir">drwxr-xr-x  <a href="/assets/" style="color:inherit;text-decoration:underline">assets/</a></span>
+        <span class="terminal__line terminal__line--dir">drwxr-xr-x  <a href="/games/"  style="color:inherit;text-decoration:underline">games/</a></span>
+        <span class="terminal__line terminal__line--dir">drwxr-xr-x  <a href="/apps/"   style="color:inherit;text-decoration:underline">apps/</a></span>
         <span class="terminal__line terminal__line--cmd">$ echo $?</span>
         <span class="terminal__line terminal__line--code cursor">404</span>
       </div>
 
       <div class="error-actions fade-up fade-up--d4">
-        <a href="index.html" class="btn btn--primary" data-i18n="404.back">Zurück zur Startseite</a>
-        <a href="assets.html" class="btn btn--ghost" data-i18n="nav.assets">Assets</a>
+        <a href="/"        class="btn btn--primary" data-i18n="404.back">Zurück zur Startseite</a>
+        <a href="/assets/" class="btn btn--ghost"   data-i18n="nav.assets">Assets</a>
       </div>
     </div>
   </main>

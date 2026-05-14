@@ -11,33 +11,33 @@
   </url>
 
   <url>
-    <loc>https://hk-gamestudio.github.io/assets.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://hk-gamestudio.github.io/assets.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hk-gamestudio.github.io/assets.html"/>
+    <loc>https://hk-gamestudio.github.io/assets/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hk-gamestudio.github.io/assets/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hk-gamestudio.github.io/assets/"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://hk-gamestudio.github.io/games.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://hk-gamestudio.github.io/games.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hk-gamestudio.github.io/games.html"/>
+    <loc>https://hk-gamestudio.github.io/games/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hk-gamestudio.github.io/games/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hk-gamestudio.github.io/games/"/>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://hk-gamestudio.github.io/apps.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://hk-gamestudio.github.io/apps.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hk-gamestudio.github.io/apps.html"/>
+    <loc>https://hk-gamestudio.github.io/apps/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hk-gamestudio.github.io/apps/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hk-gamestudio.github.io/apps/"/>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://hk-gamestudio.github.io/docs.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://hk-gamestudio.github.io/docs.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://hk-gamestudio.github.io/docs.html"/>
+    <loc>https://hk-gamestudio.github.io/docs/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://hk-gamestudio.github.io/docs/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://hk-gamestudio.github.io/docs/"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

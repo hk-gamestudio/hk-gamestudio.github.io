@@ -1,15 +1,15 @@
 /**
  * Lightweight i18n module.
- * Loads ./i18n/{lang}.json, stores in module cache, translates DOM via data-i18n.
+ * Loads /i18n/{lang}.json, stores in module cache, translates DOM via data-i18n.
  */
 
 const cache = {};
 let currentLang = 'de';
 
 export async function initI18n() {
-  const stored = localStorage.getItem('hk-lang');
+  const stored  = localStorage.getItem('hk-lang');
   const browser = navigator.language?.slice(0, 2) ?? 'de';
-  currentLang = stored ?? (['de', 'en'].includes(browser) ? browser : 'de');
+  currentLang   = stored ?? (['de', 'en'].includes(browser) ? browser : 'de');
 
   document.documentElement.lang = currentLang;
   await loadLang(currentLang);
@@ -26,7 +26,6 @@ export async function setLang(lang) {
   applyTranslations();
   updateLangToggle();
 
-  // Dispatch event so page-specific scripts can re-render content
   document.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
 }
 
@@ -38,7 +37,6 @@ export function t(keyPath) {
   return keyPath.split('.').reduce((obj, key) => obj?.[key], strings) ?? keyPath;
 }
 
-/** Translate all elements carrying data-i18n="dot.path" */
 export function applyTranslations() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
@@ -68,7 +66,7 @@ export function applyTranslations() {
 async function loadLang(lang) {
   if (cache[lang]) return;
   try {
-    const res = await fetch(`i18n/${lang}.json`);
+    const res = await fetch(`/i18n/${lang}.json`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     cache[lang] = await res.json();
   } catch (err) {

@@ -623,4 +623,15 @@
     transform: scale(0.92);
   }
   .reveal--scale.visible { transform: scale(1); }
+
+  /* ── Selected card (active URL slug) ─────────────────────────────────────── */
+
+  .card[data-selected="true"],
+  .game-card[data-selected="true"],
+  .app-card[data-selected="true"] {
+    outline: 2px solid var(--clr-cyan);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px rgba(0, 255, 255, 0.07), var(--shadow-card);
+    transition: outline var(--transition-fast), box-shadow var(--transition-fast);
+  }
 }

@@ -1,32 +1,112 @@
 /**
  * Documentation page logic.
- * Reads ?type=asset|game &id=AssetCreator &variant=shadowed (games only)
- * Fetches the Markdown file, renders it, builds TOC, handles lang changes.
+ * Reads slug from URL path (/docs/asset-creator), sessionStorage (404 redirect),
+ * or ?slug= query param. Resolves slug → doc config via manifest.json.
  */
 
 import { renderMarkdown, extractToc } from './markdown.js';
 import { getLang, t }                  from './i18n.js';
 
 export async function initDocs() {
-  const params  = new URLSearchParams(location.search);
-  const type    = params.get('type')   ?? 'asset';
-  const id      = params.get('id')     ?? '';
-  const variant = params.get('variant') ?? '';
-  const docsId  = params.get('docsId') ?? id;
-  const name    = params.get('name')   ?? '';
+  // 1. Resolve slug
+  let slug = '';
 
-  if (!id) {
-    showNotFound();
-    return;
+  // From 404 redirect (sessionStorage)
+  const pending = sessionStorage.getItem('hk-redirect');
+  if (pending) {
+    try {
+      const { section, slug: s } = JSON.parse(pending);
+      if (section === 'docs') slug = s;
+    } catch { /* ignore */ }
+    sessionStorage.removeItem('hk-redirect');
   }
 
-  try { await render(type, id, variant, docsId, name); } catch { /* render errors non-critical for listener */ }
+  // From URL path: /docs/asset-creator
+  if (!slug) {
+    const segs = location.pathname.split('/').filter(Boolean);
+    if (segs[0] === 'docs' && segs[1]) slug = segs[1];
+  }
 
+  // From query param (fallback for internal links)
+  if (!slug) {
+    const params = new URLSearchParams(location.search);
+    slug = params.get('slug') ?? params.get('id') ?? '';
+  }
+
+  if (!slug) { showNotFound(); return; }
+
+  // 2. Clean URL to /docs/{slug}
+  const cleanPath = `/docs/${slug}`;
+  if (location.pathname !== cleanPath) {
+    history.replaceState(null, '', cleanPath);
+  }
+
+  // 3. Resolve slug → config
+  const config = await resolveSlug(slug);
+  if (!config) { showNotFound(); return; }
+
+  // 4. Render (errors non-critical — lang listener must still register)
+  try { await render(config); } catch { /* non-critical */ }
+
+  // 5. Reload on language change
   document.addEventListener('langchange', () => location.reload());
 }
 
-async function render(type, id, variant, docsId = id, urlName = '', forceLang = null) {
-  const lang = forceLang ?? getLang();
+async function resolveSlug(slug) {
+  try {
+    const res = await fetch('/manifest.json', { cache: 'no-store' });
+    if (!res.ok) return null;
+    const manifest = await res.json();
+
+    // Assets
+    for (const m of manifest.assets ?? []) {
+      if ((m.slug ?? m.id) === slug) {
+        return {
+          type:    'asset',
+          id:      m.id,
+          variant: '',
+          docsId:  m.id,
+          name:    m.displayName ?? m.id.replace(/([A-Z])/g, ' $1').trim(),
+        };
+      }
+    }
+
+    // Games (all groups)
+    const allGames = [
+      ...(manifest.games?.standalone ?? []),
+      ...(manifest.games?.lighted   ?? []),
+      ...(manifest.games?.shadowed  ?? []),
+    ];
+    for (const m of allGames) {
+      if ((m.slug ?? m.id.toLowerCase()) === slug) {
+        return {
+          type:    'game',
+          id:      m.id,
+          variant: m.variant ?? '',
+          docsId:  m.id,
+          name:    m.displayName ?? m.id,
+        };
+      }
+    }
+
+    // Apps
+    for (const a of manifest.apps ?? []) {
+      if (a.id === slug) {
+        return {
+          type:    'app',
+          id:      a.id,
+          variant: '',
+          docsId:  a.docsId ?? a.id,
+          name:    a.name?.[getLang()] ?? a.name?.en ?? a.id,
+        };
+      }
+    }
+  } catch { /* ignore */ }
+  return null;
+}
+
+async function render({ type, id, variant, docsId, name }) {
+  const lang   = getLang();
   const layout = document.getElementById('docs-layout');
   if (!layout) return;
 
@@ -53,13 +133,11 @@ async function render(type, id, variant, docsId = id, urlName = '', forceLang = 
   const d      = info?.[lang] ?? info?.en ?? {};
   const status = d.status ?? null;
 
-  // Display name: URL param → camelCase split → kebab-case split
-  const displayName = urlName
+  const displayName = name
     || id.replace(/([A-Z])/g, ' $1').trim()
     || id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   document.title = `${displayName} – Docs | HK Productions`;
 
-  // Build TOC
   const tocItems = extractToc(mdText);
   const tocHtml  = tocItems.length
     ? `<nav class="docs-toc" id="docs-toc" aria-label="Inhaltsverzeichnis">
@@ -73,7 +151,6 @@ async function render(type, id, variant, docsId = id, urlName = '', forceLang = 
       </nav>`
     : '';
 
-  // Render content
   const contentHtml = renderMarkdown(mdText);
 
   layout.innerHTML = `
@@ -81,7 +158,7 @@ async function render(type, id, variant, docsId = id, urlName = '', forceLang = 
     <article class="docs-article">
       <header class="docs-header">
         <nav class="docs-breadcrumb" aria-label="Breadcrumb">
-          <a href="index.html" data-i18n="nav.home">${t('nav.home')}</a>
+          <a href="/" data-i18n="nav.home">${t('nav.home')}</a>
           <span class="docs-breadcrumb__sep" aria-hidden="true">/</span>
           <a href="${backHref}">${backLabel}</a>
           <span class="docs-breadcrumb__sep" aria-hidden="true">/</span>
@@ -100,7 +177,6 @@ async function render(type, id, variant, docsId = id, urlName = '', forceLang = 
       <div class="docs-body" id="docs-body">${contentHtml}</div>
     </article>`;
 
-  // Active TOC highlighting via IntersectionObserver
   try { initTocHighlight(); } catch { /* non-critical */ }
 }
 
@@ -109,35 +185,35 @@ function resolvePaths(type, id, variant, docsId, lang) {
 
   if (type === 'asset') {
     return {
-      mdPath:    `infos/assets/${id}/Documentation_${LANG}.md`,
-      infoPath:  `infos/assets/${id}/info.json`,
-      backHref:  'assets.html',
+      mdPath:    `/infos/assets/${id}/Documentation_${LANG}.md`,
+      infoPath:  `/infos/assets/${id}/info.json`,
+      backHref:  '/assets/',
       backLabel: t('nav.assets'),
     };
   }
 
   if (type === 'app') {
     return {
-      mdPath:    `infos/apps/${docsId}/documentation_${LANG}.md`,
+      mdPath:    `/infos/apps/${docsId}/documentation_${LANG}.md`,
       infoPath:  null,
-      backHref:  'apps.html',
+      backHref:  '/apps/',
       backLabel: t('nav.apps'),
     };
   }
 
-  // Game — variant determines subfolder (lighted | shadowed)
+  // Game
   const gameVariant = variant || 'shadowed';
   return {
-    mdPath:    `infos/games/tooniom/${gameVariant}/${id}/documentation_${LANG}.md`,
-    infoPath:  `infos/games/tooniom/${gameVariant}/${id}/info.json`,
-    backHref:  'games.html',
+    mdPath:    `/infos/games/tooniom/${gameVariant}/${id}/documentation_${LANG}.md`,
+    infoPath:  `/infos/games/tooniom/${gameVariant}/${id}/info.json`,
+    backHref:  '/games/',
     backLabel: t('nav.games'),
   };
 }
 
 function initTocHighlight() {
-  const toc      = document.getElementById('docs-toc');
-  const body     = document.getElementById('docs-body');
+  const toc  = document.getElementById('docs-toc');
+  const body = document.getElementById('docs-body');
   if (!toc || !body) return;
 
   const headings = body.querySelectorAll('h1, h2, h3');
@@ -171,7 +247,7 @@ function statusBadge(status) {
   return `<span class="badge ${cls}">${t(key)}</span>`;
 }
 
-function showNotFound(layout, backHref = 'assets.html', backLabel = 'Assets') {
+function showNotFound(layout, backHref = '/assets/', backLabel = 'Assets') {
   const el = layout ?? document.getElementById('docs-layout');
   if (!el) return;
   el.innerHTML = `
