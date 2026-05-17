@@ -42,6 +42,8 @@
   "apps": [
     {
       "id": "hive-memories",
+      "hasDocs": true,
+      "docsId": "hive-memories",
       "icon": "🐝",
       "name":        { "de": "Hive Memories",   "en": "Hive Memories" },
       "tagline":     { "de": "Die Imker-App",    "en": "The Beekeeper App" },
