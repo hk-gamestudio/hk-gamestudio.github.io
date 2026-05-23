@@ -128,7 +128,7 @@ async function render({ type, id, variant, docsId, name }) {
     return;
   }
 
-  const mdText = mdResult.value;
+  const mdText = stripEmbeddedToc(mdResult.value);
   const info   = infoResult.status === 'fulfilled' ? infoResult.value : null;
   const d      = info?.[lang] ?? info?.en ?? {};
   const status = d.status ?? null;
@@ -151,7 +151,7 @@ async function render({ type, id, variant, docsId, name }) {
       </nav>`
     : '';
 
-  const contentHtml = renderMarkdown(stripEmbeddedToc(mdText));
+  const contentHtml = renderMarkdown(mdText);
 
   layout.innerHTML = `
     ${tocHtml}
@@ -254,14 +254,23 @@ function initTocHighlight() {
 
 function statusBadge(status) {
   const map = {
-    Published:      'badge--published',
-    Veröffentlicht: 'badge--published',
-    'In Planning':  'badge--planned',
-    'In Planung':   'badge--planned',
+    Published:          { cls: 'badge--published', key: 'badges.published'      },
+    Veröffentlicht:     { cls: 'badge--published', key: 'badges.published'      },
+    'In Planning':      { cls: 'badge--planned',   key: 'badges.in_planning'    },
+    'In Planung':       { cls: 'badge--planned',   key: 'badges.in_planning'    },
+    coming_soon:        { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'In Pending':       { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'in Pending':       { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'In Warteschlange': { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'coming soon...':   { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'coming soon':      { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'In Umsetzung':     { cls: 'badge--dev',       key: 'badges.in_development' },
+    'In Entwicklung':   { cls: 'badge--dev',       key: 'badges.in_development' },
+    'In Development':   { cls: 'badge--dev',       key: 'badges.in_development' },
+    'in Development':   { cls: 'badge--dev',       key: 'badges.in_development' },
   };
-  const cls = map[status] ?? 'badge--planned';
-  const key = cls === 'badge--published' ? 'badges.published' : 'badges.in_planning';
-  return `<span class="badge ${cls}">${t(key)}</span>`;
+  const entry = map[status] ?? { cls: 'badge--planned', key: 'badges.in_planning' };
+  return `<span class="badge ${entry.cls}">${t(entry.key)}</span>`;
 }
 
 function showNotFound(layout, backHref = '/assets/', backLabel = 'Assets') {
