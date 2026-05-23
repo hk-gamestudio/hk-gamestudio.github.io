@@ -1,0 +1,16 @@
+{
+  "title": "Asset Graph",
+  "subtitle": "Umsetzung: in Pending",
+  "items": [
+    "Nodebasierte Erstellung von Charakteren",
+    "Nodebasierte Erstellung von Items",
+    "Stats-System",
+    "Buff- und Chain-Buff-System",
+    "Angriffe mit Cast-Buffs",
+    "Klassenbasierte Angriffspools",
+    "Charaktere mit Evolutionsleveln",
+    "Zufällige Stats und klassenabhängige Angriffe",
+    "Items mit Seltenheitsgraden und Dropchancen",
+    "Ready-to-Play-Logik"
+  ]
+}

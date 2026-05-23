@@ -1,0 +1,34 @@
+{
+  "link": "coming soon...",
+  "version": "1.0.0.0",
+  "de": {
+    "status": "In Warteschlange",
+    "existing_features": [
+      "Nodebasierte Erstellung von Charakteren und Items",
+      "Stats-System",
+      "Buff- und Chain-Buff-System",
+      "Angriffe mit Cast-Buffs",
+      "Klassenbasierte Angriffspools",
+      "Charaktere mit Evolutionsleveln",
+      "Zufällige Stats und klassenabhängige Angriffe",
+      "Items mit Seltenheitsgraden und Dropchancen",
+      "Ready-to-Play-Logik"
+    ],
+    "features": []
+  },
+  "en": {
+    "status": "coming soon...",
+    "existing_features": [
+      "Node-based creation of characters and items",
+      "Stats system",
+      "Buff and chain buff system",
+      "Attacks with cast buffs",
+      "Class-based attack pools",
+      "Characters with evolution levels",
+      "Random stats and class-based attacks",
+      "Items with rarity levels and drop chances",
+      "Ready-to-play logic"
+    ],
+    "features": []
+  }
+}

@@ -1,5 +1,6 @@
 {
   "assets": [
+    { "id": "AssetGraph",    "slug": "asset-graph",    "coverDir": "icons/assets/AssetGraph",    "cover": "Cover_AssetGraph.png",    "icon": "Icon_AssetGraph.png",    "hasDocs": true },
     { "id": "AssetCreator",    "slug": "asset-creator",    "coverDir": "icons/assets/AssetCreator",    "cover": "Cover_AssetCreator.png",    "icon": "Icon_AssetCreator.png",    "hasDocs": true },
     { "id": "DayTimer",        "slug": "day-timer",         "coverDir": "icons/assets/DayTimer",        "cover": "Cover_DayTimer.png",        "icon": "Icon_DayTimer.png",        "hasDocs": true },
     { "id": "MeshFormer",      "slug": "mesh-former",       "coverDir": "icons/assets/MeshFormer",      "cover": "Cover_MeshFormer.png",      "icon": "Icon_MeshFormer.png",      "hasDocs": true },

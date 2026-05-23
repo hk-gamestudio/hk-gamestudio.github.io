@@ -1,8 +1,8 @@
 {
-    "link": "coming soon...",
+    "link": "https://assetstore.unity.com/packages/3d/characters/movement-systems-362624",
     "version": "1.0.0.0",
     "de": {
-        "status": "In Warteschlange",
+        "status": "Veröffentlicht",
         "existing_features": [
             "ThirdPerson Movement",
             "FirstPerson Movement",
@@ -15,7 +15,7 @@
         ]
     },
     "en": {
-        "status": "in Pending",
+        "status": "Published",
         "existing_features": [
             "ThirdPerson Movement",
             "FirstPerson Movement",

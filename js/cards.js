@@ -436,7 +436,7 @@ export async function loadShowcase(containerId) {
   const findGame  = id => allGameMeta.find(m => m.id === id) ?? null;
   const findApp   = id => manifest.apps.find(a => a.id === id) ?? null;
 
-  const ASSETS = ['AssetCreator', 'PlayerUtils', 'DayTimer'];
+  const ASSETS = ['AssetGraph', 'PlayerUtils', 'DayTimer'];
   const GAMES  = ['TheOcean', 'MinerTycoon', 'Storylands'];
   const APPS   = ['adhd-plan-a', 'hive-memories'];
 
