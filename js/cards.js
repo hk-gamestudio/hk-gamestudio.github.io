@@ -99,8 +99,8 @@ class ProductCard extends HTMLElement {
     const d    = info[lang] ?? info.en ?? {};
     const status = d.status ?? 'In Planning';
 
-    const existing = (d.existing_features ?? []).slice(0, 6);
-    const planned  = (d.features ?? []).slice(0, 3);
+    const existing = d.existing_features ?? [];
+    const planned  = d.features ?? [];
 
     const featureItems = list =>
       list.map(f => `<li class="card__feature-item">${f}</li>`).join('');
