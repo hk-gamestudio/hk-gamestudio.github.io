@@ -20,6 +20,8 @@ function statusBadge(status, lang) {
     'In Pending':       { cls: 'badge--coming',    key: 'badges.coming_soon'    },
     'in Pending':       { cls: 'badge--coming',    key: 'badges.coming_soon'    },
     'In Warteschlange': { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'coming soon...':   { cls: 'badge--coming',    key: 'badges.coming_soon'    },
+    'coming soon':      { cls: 'badge--coming',    key: 'badges.coming_soon'    },
     'In Umsetzung':     { cls: 'badge--dev',       key: 'badges.in_development' },
     'In Entwicklung':   { cls: 'badge--dev',       key: 'badges.in_development' },
     'In Development':   { cls: 'badge--dev',       key: 'badges.in_development' },
