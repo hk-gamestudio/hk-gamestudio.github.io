@@ -151,7 +151,7 @@ async function render({ type, id, variant, docsId, name }) {
       </nav>`
     : '';
 
-  const contentHtml = renderMarkdown(mdText);
+  const contentHtml = renderMarkdown(stripEmbeddedToc(mdText));
 
   layout.innerHTML = `
     ${tocHtml}
@@ -178,6 +178,23 @@ async function render({ type, id, variant, docsId, name }) {
     </article>`;
 
   try { initTocHighlight(); } catch { /* non-critical */ }
+}
+
+/**
+ * Remove a manually-written table-of-contents section from the markdown so it
+ * doesn't render in the body — the left "contents" sidebar is auto-generated
+ * from the headings. Authors keep the TOC in the .md for use outside the site.
+ *
+ * Matches a heading whose text is exactly a TOC title (DE/EN), then strips that
+ * heading plus everything up to (but not including) the next heading — which
+ * also removes the trailing `---` divider, leaving the one after the intro.
+ */
+function stripEmbeddedToc(md) {
+  const src = md.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  return src.replace(
+    /^#{1,6}[ \t]+(?:Inhaltsverzeichnis|Table of Contents|Contents|Inhalt)[ \t]*$\n[\s\S]*?(?=^#{1,6}[ \t])/im,
+    '',
+  );
 }
 
 function resolvePaths(type, id, variant, docsId, lang) {
