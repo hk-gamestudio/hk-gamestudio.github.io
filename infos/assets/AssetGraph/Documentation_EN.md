@@ -316,7 +316,7 @@ Create an empty GameObject and add `AssetGraphPlayer`. The key sections:
 - **Targeting & Attacks**: *Targeting Mode* (Button = manual only, Auto = automatically the weakest target, Both = automatic with manual override), *Targeting Range*, *Attack 1* / *Attack 2*, *Item Use Slots* (1-4 for Self/Splash items).
 - **Input - Keyboard/Mouse** and **Input - Controller**: all keys rebindable.
 - **Inventory**: *Inventory Size* (slots), *Pickup Radius*, *Auto Pickup*, *Starting Currency*.
-- **Events**: OnSpawned, OnDeath, OnDamageTaken, OnEvolved, OnItemPickedUp - hook up your own reactions.
+- **Events**: OnSpawned, OnDeath, OnDamageTaken, OnEvolved, OnItemPickedUp - hook up your own reactions. (OnDamageTaken carries a `DamageInfo` with amount/source/crit; the rest are parameterless triggers - get details from the instance's C# events when needed, see the API reference.)
 - **Debug (Play Mode)**: shows live stats, active buffs, inventory, quickslots and equipped items. Even without your own UI you can place items in slots, use them, equip them and spawn an enemy here.
 
 ---
@@ -330,7 +330,7 @@ Create an empty GameObject, add `AssetGraphNPC` and assign the character. **Impo
 - **Movement (NavMesh)**: *Agent Type* (from the Navigation settings, incl. "Open Agent Settings..."), *Patrol Radius* (roaming area around the spawn), *Detection Range* (when chasing starts), *Attack Stop Distance* (stop distance, should roughly equal the attack range), *Move Speed* (0 = derive from stats), *Flee When Low* + *Flee Health Percent* (flee at low health).
 - **Death**: *On Death* + *Death Delay*.
 - **Drops**: a plain list of possible items. Whether and how much drops comes from the item itself (Dropable, Drop Chance, Min/Max Drop Count). Drops appear in the world with a small animation.
-- **Events**: OnSpawned, OnDeath, OnDamageTaken, OnItemDropped.
+- **Events**: OnSpawned, OnDeath, OnDamageTaken, OnItemDropped. (OnDamageTaken carries a `DamageInfo`; OnDeath/OnItemDropped are parameterless triggers - get details from the instance's C# events when needed, see the API reference.)
 
 The AI uses a simple state machine: **Patrol** (wander), **Chase** (pursue the target up to attack range), **Flee** (run at low health). Attacking itself is handled by the built-in AutoCombatant - it automatically uses the character's available attacks on cooldown.
 
@@ -544,6 +544,33 @@ hero.ModifyStat("Damage", +2);
 hero.EvolveTo(1);
 hero.Revive();
 ```
+
+### CharacterInstance events (e.g. for damage numbers)
+The spawned instance fires several C# events with full data - ideal for floating damage numbers, hit reactions, etc.:
+```csharp
+hero.OnDamageTaken     += (amount, source, isCrit) => { /* show damage number */ };
+hero.OnDeath           += () => { /* death effect */ };
+hero.OnEvolved         += step => { /* tier changed */ };
+hero.OnAttackPerformed += attack => { /* attack performed */ };
+```
+Easiest to hook up per instance via `OnSpawned`:
+```csharp
+player.OnSpawned.AddListener(inst =>
+    inst.OnDamageTaken += (amount, source, isCrit) =>
+        ShowFloatingNumber(inst.transform.position, amount, isCrit));
+// for enemies likewise via npc.OnSpawned or npc.Instance.OnDamageTaken
+```
+
+**Inspector variant**: `OnDamageTaken` on AssetGraphPlayer/AssetGraphNPC now carries the data too - as a `DamageInfo` (Amount, Source, IsCrit). So you can wire it without any code: drag a method with a `DamageInfo` parameter into the event.
+```csharp
+// in your own UI script, wired to the OnDamageTaken event in the inspector
+public void OnHit(DamageInfo info)
+{
+    ShowFloatingNumber(info.Amount, info.IsCrit, info.Source);
+}
+```
+
+> Note: only `OnDamageTaken` carries data (DamageInfo). The other component events (OnDeath, OnEvolved, ...) are intentionally parameterless triggers; get their details from the instance's C# events when needed.
 
 ### RuntimeStats (via `hero.Stats`)
 ```csharp
