@@ -5,8 +5,7 @@
   }
 
   .apps-page .cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
-    max-width: 900px;
+    grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
     margin-inline: auto;
   }
 

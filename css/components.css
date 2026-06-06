@@ -437,10 +437,10 @@
   }
 
   .app-card__icon {
-    font-size: 3rem;
+    font-size: 3.5rem;
     line-height: 1;
-    width: 4rem;
-    height: 4rem;
+    width: 6rem;
+    height: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
