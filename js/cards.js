@@ -248,11 +248,16 @@ class AppCard extends HTMLElement {
       ? `<a href="/docs/${app.id}" class="btn btn--surface btn--sm">Docs</a>`
       : `<span class="btn btn--surface btn--sm btn--muted">Docs – <span data-i18n="games.coming_soon">${t('games.coming_soon')}</span></span>`;
 
+    const iconPath = app.iconDir && app.icon ? `/${app.iconDir}/${app.icon}` : '';
+    const iconHtml = iconPath
+      ? `<img src="${iconPath}" alt="${name} icon" loading="lazy" class="app-card__icon-img">`
+      : (app.iconFallback ?? app.icon ?? '📱');
+
     this.innerHTML = `
       <article class="app-card app-card--coming reveal" role="article">
         <div class="app-card__header">
           <div class="app-card__icon-wrap">
-            <div class="app-card__icon">${app.icon ?? '📱'}</div>
+            <div class="app-card__icon">${iconHtml}</div>
           </div>
           <div class="app-card__header-text">
             <h3 class="app-card__name">${name}</h3>
@@ -440,7 +445,7 @@ export async function loadShowcase(containerId) {
 
   const ASSETS = ['AssetGraph', 'PlayerUtils', 'DayTimer'];
   const GAMES  = ['TheOcean', 'MinerTycoon', 'Storylands'];
-  const APPS   = ['adhd-plan-a', 'hive-memories'];
+  const APPS   = ['rechnix', 'hive-memories', 'adhd-plan-a'];
 
   container.innerHTML = skeletonCards(3);
 

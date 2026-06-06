@@ -448,6 +448,21 @@
     border-radius: var(--radius-lg);
     border: 1px solid var(--clr-border);
     flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .app-card__icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* When an image is present, drop the surface backdrop so the icon's own
+     design shows cleanly to its edges. */
+  .app-card__icon:has(.app-card__icon-img) {
+    background: transparent;
+    border-color: transparent;
   }
 
   .app-card__header-text {

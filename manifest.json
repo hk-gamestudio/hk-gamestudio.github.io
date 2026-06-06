@@ -45,7 +45,9 @@
       "id": "hive-memories",
       "hasDocs": true,
       "docsId": "hive-memories",
-      "icon": "🐝",
+      "iconDir": "icons/apps/hive-memories",
+      "icon": "AppIcon.png",
+      "iconFallback": "🐝",
       "name":        { "de": "Hive Memories",   "en": "Hive Memories" },
       "tagline":     { "de": "Die Imker-App",    "en": "The Beekeeper App" },
       "description": {
@@ -59,12 +61,30 @@
       "id": "adhd-plan-a",
       "hasDocs": true,
       "docsId": "adhd",
-      "icon": "🧠",
+      "iconDir": "icons/apps/adhd",
+      "icon": "AppIcon.png",
+      "iconFallback": "🧠",
       "name":        { "de": "ADHD Plan A",                        "en": "ADHD Plan A" },
       "tagline":     { "de": "Planen für neurodivergente Menschen", "en": "Planning for neurodiverse people" },
       "description": {
         "de": "Eine App, die Menschen mit ADHS und anderen neurodivergenten Eigenschaften bei der strukturierten Tagesplanung unterstützt.",
         "en": "An app supporting people with ADHD and other neurodiverse traits with structured daily planning."
+      },
+      "platform": "Android",
+      "status": "coming_soon"
+    },
+    {
+      "id": "rechnix",
+      "hasDocs": true,
+      "docsId": "rechnix",
+      "iconDir": "icons/apps/rechnix",
+      "icon": "AppIcon.png",
+      "iconFallback": "🧾",
+      "name":        { "de": "Rechnix",                                  "en": "Rechnix" },
+      "tagline":     { "de": "Belege, Rechnungen & EÜR – offline",       "en": "Receipts, invoices & EÜR – offline" },
+      "description": {
+        "de": "Erfasse Belege per Foto mit On-Device-OCR, schreibe Rechnungen (inkl. E-Rechnung) und generiere automatisch EÜR und USt-Voranmeldung – alles verschlüsselt auf deinem Gerät.",
+        "en": "Capture receipts by photo with on-device OCR, create invoices (including e-invoices) and auto-generate the EÜR and VAT advance return — all encrypted on your device."
       },
       "platform": "Android",
       "status": "coming_soon"
